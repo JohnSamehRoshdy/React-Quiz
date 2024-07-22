@@ -1,7 +1,7 @@
-function StartScreen({ numberOfQuestions, dispatch }) {
+function StartScreen({ numberOfQuestions, dispatch, loggedInAccount }) {
   return (
     <div className="start">
-      <h2>Welcome to React quiz !!</h2>
+      <h2>Welcome {loggedInAccount.username} to React quiz !!</h2>
       <h3>{numberOfQuestions} questions to test your react mastery</h3>
       <button
         onClick={() => dispatch({ type: "start" })}

@@ -1,4 +1,22 @@
-function FinishScreen({ points, maxPossiblePoints, highScore, dispatch }) {
+import { useEffect } from "react";
+
+function FinishScreen({
+  points,
+  maxPossiblePoints,
+  highScore,
+  dispatch,
+  updateAccount,
+  loggedInAccount,
+  accDispatch,
+}) {
+  // useEffect(
+  //   function () {
+  //     // updateAccount(loggedInAccount.id, { score: points });
+  //     accDispatch({ type: "updateScore", payload: points });
+  //   },
+  //   [points, accDispatch]
+  // );
+
   const percentage = (points / maxPossiblePoints) * 100;
   let emoji;
   if (percentage === 100) emoji = "🥇";
@@ -15,10 +33,21 @@ function FinishScreen({ points, maxPossiblePoints, highScore, dispatch }) {
       <p className="highscore">(High score : {highScore} points)</p>
       <button
         className="btn btn-ui"
-        onClick={() => dispatch({ type: "restart" })}
+        onClick={() => {
+          dispatch({ type: "restart" });
+          accDispatch({ type: "exit" });
+        }}
       >
         Restart Quiz
       </button>
+      {/* <button
+        className="btn btn-ui"
+        onClick={() => {
+          accDispatch({ type: "exit" });
+        }}
+      >
+        Exit
+      </button> */}
     </>
   );
 }
